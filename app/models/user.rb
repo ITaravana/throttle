@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
-      u.first_name = auth_hash["info"]["first_name"]
-      u.email = auth_hash["extra"]["raw_info"]["email"]
+      u.first_name = auth_hash["info"]["name"]
+      u.email = auth_hash["extra"]["raw_info"]["email"] || "#{auth_hash["info"]["name"]}@tempmail.com"
+      u.pic = auth_hash["info"]["image"]
+      u.password = SecureRandom.hex(6)
       u.authentications<<(authentication)
     end
   end
