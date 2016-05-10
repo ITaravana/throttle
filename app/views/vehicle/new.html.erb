@@ -1,0 +1,55 @@
+<h1>List a vehicle for rent</h1>
+
+<%= form_for(@vehicle, url: vehicle_index_path) do |f| %>
+
+ <%= f.label :description %><br>
+ <%= f.text_area :description %><br>
+ 
+ <%= f.label :address %><br>
+ <%= f.text_field :address %><br>
+
+ <%= f.label :city %><br>
+ <%= f.text_field :city %><br>
+
+  <%= f.label :country %><br>
+ <%= f.country_select :country %><br>
+
+   <%= f.label :min_day_rent, "Minimum number of days:" %><br>
+ <%= f.number_field :min_day_rent, :in => 0..15, :step => 1 %><br>
+
+    <%= f.label :max_day_rent, "Maximum number of days:"%><br>
+<%= f.number_field :max_day_rent, :in => 1..90, :step => 1 %><br>
+
+     <%= f.label :price_per_day, "Price per day:" %><br>
+<%= f.number_field :price_per_day, :in => 0..1000, :step => 5 %><br>
+
+  <%= f.label :brand %><br>
+ <%= f.text_field :brand %><br>
+ 
+ <%= f.label :model %><br>
+ <%= f.text_area :model %><br>
+
+  <%= f.label :model_year %><br>
+ <%= f.select :model_year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1) %> <br>
+
+   <%= f.label :type_vehicle %><br>
+ <%= f.radio_button :type_vehicle, 'Roadster', :checked => true %> Roadster
+  <%= f.radio_button :type_vehicle, 'Cruiser'%> Cruiser
+  <%= f.radio_button :type_vehicle, 'Sport Bike'%> Sport Bike
+  <%= f.radio_button :type_vehicle, 'Touring'%> Touring
+  <%= f.radio_button :type_vehicle, 'Sport Touring'%> Sport Touring
+  <%= f.radio_button :type_vehicle, 'Dual Sport'%> Dual Sport
+  <%= f.radio_button :type_vehicle, 'Scooter/Moped'%> Scooter/Moped
+  <%= f.radio_button :type_vehicle, 'Off Road'%> Off Road 
+  <%= f.radio_button :type_vehicle, 'Vintage'%> Vintage<br>
+
+   <%= f.label :cc, "Your bike's CC" %><br>
+<%= f.number_field :cc, :in => 50..1500, :step => 25 %><br>
+
+    <%= f.label :accessories %><br>
+ <%= f.text_area :accessories %><br>
+ 
+ <%= f.submit "Create" %>
+
+<% end %>
+

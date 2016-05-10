@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506064214) do
+ActiveRecord::Schema.define(version: 20160509040449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,5 +39,28 @@ ActiveRecord::Schema.define(version: 20160506064214) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "vehicles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "on_hire"
+    t.string   "description"
+    t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.integer  "min_day_rent"
+    t.integer  "max_day_rent"
+    t.integer  "price_per_day"
+    t.string   "brand"
+    t.string   "model"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
+    t.string   "type_vehicle"
+    t.string   "model_year"
+    t.integer  "cc"
+    t.string   "accessories"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
 end
