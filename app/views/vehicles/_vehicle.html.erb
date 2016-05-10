@@ -1,0 +1,12 @@
+<%= div_for vehicle do %>
+  <div class="large-12 columns border border-box glassy-bg mt pt">
+    <strong><%= h(vehicle.description) %></strong><br />
+    <sup class="text-muted">From <%= time_ago_in_words(vehicle.created_at)%></sup><br />
+    <div class="mb pb">
+      <%= h(vehicle.brand) %>
+    </div>
+    <div class="tags">
+      <%=raw vehicle.all_tags %>
+    </div>
+  </div>
+<% end %>

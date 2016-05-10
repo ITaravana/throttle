@@ -1,0 +1,5 @@
+alert("entered");
+var new_vehicle = $("<%= escape_javascript(render(partial: @vehicle))%>").hide();
+$('#vehicles').prepend(new_vehicle);
+$('#vehicle_<%= @vehicle.id %>').fadeIn('slow');
+$('#new_vehicle')[0].reset();

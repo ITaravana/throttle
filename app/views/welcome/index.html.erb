@@ -7,3 +7,13 @@
 <button type="button" class="btn btn-primary"><a href="vehicle/index">See all the vehicles for rent</a></button>
 <button type="button" class="btn btn-success">Success</button>
 
+<div class="row mt pt">
+  <div class="large-5 columns">
+    <div class="top-pad glassy-bg">
+      <%= render partial: "vehicles/new" %>
+    </div>
+  </div>
+ 	<div class= "large-7 columns" id="vehicles">
+    <%= render partial: @vehicles.reverse %>
+  </div>
+</div>
