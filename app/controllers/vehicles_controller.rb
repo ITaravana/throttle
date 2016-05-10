@@ -19,6 +19,11 @@ class VehiclesController < ApplicationController
   
   def index
     @vehicle = Vehicle.all
+     if params[:tag]
+    @vehicles = Vehicle.tagged_with(params[:tag])
+  else
+    @vehicles = Vehicle.all
+  end
   end
 
   def show

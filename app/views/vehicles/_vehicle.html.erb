@@ -6,7 +6,7 @@
       <%= h(vehicle.brand) %>
     </div>
     <div class="tags">
-      <%=raw vehicle.all_tags %>
+      <%=raw tag_links(vehicle.all_tags) %>
     </div>
   </div>
 <% end %>

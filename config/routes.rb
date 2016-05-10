@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
-  
+  get 'tags/:tag', to: 'welcome#index', as: "tag"
   resources :users, only: [:show, :edit, :update, :destroy]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
