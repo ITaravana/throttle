@@ -1,4 +1,4 @@
-alert("entered");
+alert("Your new listing has been successfully created!");
 var new_vehicle = $("<%= escape_javascript(render(partial: @vehicle))%>").hide();
 $('#vehicles').prepend(new_vehicle);
 $('#vehicle_<%= @vehicle.id %>').fadeIn('slow');

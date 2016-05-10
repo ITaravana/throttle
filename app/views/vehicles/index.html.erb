@@ -1,2 +1,20 @@
 <h1>Vehicle#index</h1>
-<p>Find me in app/views/vehicle/index.html.erb</p>
+
+<% @vehicles.reverse.each do |vehicle| %> 
+<div class="vehicle"> 
+  <p class="content"><%= vehicle.description %></p> 
+  <p class="content"><%= vehicle.address %></p> 
+  <p class="content"><%= vehicle.city %></p> 
+  <p class="content"><%= vehicle.country %></p> 
+  <p class="content"><%= vehicle.min_day_rent %></p> 
+  <p class="content"><%= vehicle.max_day_rent %></p> 
+  <p class="content"><%= vehicle.price_per_day %></p> 
+  <p class="content"><%= vehicle.brand %></p> 
+  <p class="content"><%= vehicle.type_vehicle %></p> 
+  <p class="content"><%= vehicle.model_year%></p> 
+  <p class="content"><%= vehicle.cc%></p>
+  <p class="content"><%= vehicle.accessories%></p>
+  <p class="content"><%= vehicle.image1%></p>
+  <br>
+</div> 
+<% end %>
