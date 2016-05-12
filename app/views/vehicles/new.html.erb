@@ -1,6 +1,6 @@
 <h1>List a vehicle for rent</h1>
 
-<%= form_for(@vehicle, url: vehicle_index_path) do |f| %>
+<%= form_for(@vehicle, url: vehicle_index_path, :html => {multipart => true}) do |f| %>
 
  <%= f.label :description %><br>
  <%= f.text_area :description %><br>
@@ -48,6 +48,9 @@
 
     <%= f.label :accessories %><br>
  <%= f.text_area :accessories %><br>
+
+<%= f.label :image %><br>
+ <%= f.file_field :image %>
  
  <%= f.submit "Create" %>
 

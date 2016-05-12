@@ -1,5 +1,5 @@
 <div class="row text-center">
-<%= form_for(Vehicle.new, remote: true) do |f| %>
+<%= form_for(@vehicle, remote: true) do |f| %>
 
 <div class="large-10 large-centered columns">
   <%= f.label :description %><br>
@@ -78,10 +78,24 @@
     <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
 </div>
 
- <div class="large-10 large-centered columns">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+
+ <div class="large-10 large-centered columns" id="create_vehicle">
     <%= f.submit "Create" %>
  </div>
 
 <% end %>
 
 </div>
+
+<div class="row text-center" id="upload_image">
+<%= form_for @lastvehicle, url: vehicle_path(@lastvehicle.id) do |x| %>
+    <div class="large-10 large-centered columns">
+    <%= x.label :image %><br>
+     <%= x.file_field :image %>
+    </div>
+    <div class="large-10 large-centered columns" id="upload_image">
+    <%= x.submit "Upload" %>
+ </div>
+
+<% end %>

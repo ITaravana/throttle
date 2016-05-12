@@ -12,9 +12,7 @@ class CreateVehicles < ActiveRecord::Migration
     	t.integer :price_per_day
     	t.string :brand
     	t.string :model
-    	t.string :image1
-    	t.string :image2
-    	t.string :image3
+    	t.string :image
     	t.string :type_vehicle
     	t.string :model_year
     	t.integer :cc

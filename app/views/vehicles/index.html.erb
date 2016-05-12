@@ -14,7 +14,7 @@
   <p class="content"><%= vehicle.model_year%></p> 
   <p class="content"><%= vehicle.cc%></p>
   <p class="content"><%= vehicle.accessories%></p>
-  <p class="content"><%= vehicle.image1%></p>
+  <p class="content"><%= image_tag vehicle.image.to_s %></p>
   <br>
 </div> 
 <% end %>

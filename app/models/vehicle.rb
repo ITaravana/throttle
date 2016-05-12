@@ -1,7 +1,9 @@
 class Vehicle < ActiveRecord::Base
+  
+  has_many :vehicle_images
   has_many :taggings
   has_many :tags, through: :taggings
-
+  mount_uploader :image, ImageUploader
   #Getter and Setter for all_tags vertial attribute
   def all_tags=(names)
     self.tags = names.split(",").map do |name|

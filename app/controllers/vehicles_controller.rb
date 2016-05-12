@@ -7,9 +7,11 @@ class VehiclesController < ApplicationController
 
   def create
      @vehicle = Vehicle.new(vehicle_params)
+
      respond_to do |format|
       if @vehicle.save 
         format.js # Will search for create.js.erb
+        @lastvehicle = Vehicle.last
       else 
         format.html { render root_path }
       end 
@@ -30,6 +32,14 @@ class VehiclesController < ApplicationController
   end
 
   def update
+    @vehicle = Vehicle.last
+    
+      if @vehicle.update(vehicle_params)
+
+        redirect_to vehicle_path(@vehicle.id)
+      else
+        redirect "/"
+    end
   end
 
   def delete
@@ -37,7 +47,7 @@ class VehiclesController < ApplicationController
 
 private 
   def vehicle_params 
-    params.require(:vehicle).permit(:user_id, :on_hire, :description, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image1, :image2, :image3, :type, :model_year, :cc, :accessories, :all_tags) 
+    params.require(:vehicle).permit(:user_id, :on_hire, :description, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
   end
 
 end
