@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
   	include Clearance::User
+    mount_uploader :pic, ImageUploader2
 
     has_many :authentications, :dependent => :destroy
 

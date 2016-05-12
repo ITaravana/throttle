@@ -1,0 +1,18 @@
+<h1>Users#show</h1>
+
+<div class="user"> 
+  <p class="content"><%= image_tag @user.pic.to_s %></p>
+  <p class="content">Hello <%= @user.first_name %>, and welcome to Throttle!</p>
+  <br>
+</div> 
+
+<div class="row text-center" id="upload_image">
+<%= form_for @user, url: user_path(@user.id) do |x| %>
+    <div class="large-10 large-centered columns">
+    <%= x.label :pic %><br>
+     <%= x.file_field :pic %>
+    </div>
+    <div class="large-10 large-centered columns" id="upload_image">
+    <%= x.submit "Upload" %>
+ </div>
+ <% end %>
