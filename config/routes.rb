@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'welcome#index'
+
   get 'users/show'
 
   get 'users/edit'
@@ -10,15 +12,19 @@ Rails.application.routes.draw do
 
   resources :vehicles
 
+  resources :reservations
+
+  resources :users, only: [:show, :edit, :update, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-
+  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  
   get 'tags/:tag', to: 'welcome#index', as: "tag"
-  resources :users, only: [:show, :edit, :update, :destroy]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

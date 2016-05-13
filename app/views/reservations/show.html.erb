@@ -1,5 +1,7 @@
-<h1>Vehicles#show</h1>
-<p>Find me in app/views/vehicles/show.html.erb</p>
+<h1>Reservation#show</h1>
+
+<p>Check your booking !</p>
+
 
 <strong>Vehicle Id:<%=@vehicle.id %></strong>
 
@@ -21,23 +23,5 @@
   <p class="content"><%= @vehicle.cc%></p>
   <p class="content"><%= @vehicle.accessories%></p>
 
-
-<h2 style="color:blue;">Book now</h2>
-<%= form_for @reservation, url: reservations_path do |t| %>
-
-<%=t.hidden_field :user_id, value: current_user.id%>
-<%=t.hidden_field :vehicle_id, value: @vehicle.id%> 
-<%= t.label :check_in_date %> 
-<%= t.date_field :check_in_date%> 
-
-<%= t.label :check_out_date %> 
-<%= t.date_field :check_out_date%>
-
-<%=t.submit "Book now!!"%>
-<%end%>
-
-
-
-
-
-
+<strong>Your check_in_date : <%= @reservation.check_in_date %></strong>
+<strong>Your check_out_date : <%= @reservation.check_out_date %> </strong>

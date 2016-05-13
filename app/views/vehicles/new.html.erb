@@ -46,6 +46,8 @@
    <%= f.label :cc, "Your bike's CC" %><br>
 <%= f.number_field :cc, :in => 50..1500, :step => 25 %><br>
 
+<%=t.hidden_field :user_id, value: current_user.id%>
+
     <%= f.label :accessories %><br>
  <%= f.text_area :accessories %><br>
 

@@ -2,6 +2,7 @@
 
 <% @vehicles.reverse.each do |vehicle| %> 
 <div class="vehicle"> 
+   <%= link_to 'Book this motorbike now!', vehicle_path(vehicle) %>
   <p class="content"><%= vehicle.description %></p> 
   <p class="content"><%= vehicle.address %></p> 
   <p class="content"><%= vehicle.city %></p> 
