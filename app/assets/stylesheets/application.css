@@ -12,9 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 
 .width {
 	max-width:25em;
+}
+
+#banner {
+	background: asset-url('banner.jpg');
 }
