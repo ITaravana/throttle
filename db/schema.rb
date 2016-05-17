@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512081842) do
+ActiveRecord::Schema.define(version: 20160517023643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,21 +72,22 @@ ActiveRecord::Schema.define(version: 20160512081842) do
     t.integer  "user_id"
     t.boolean  "on_hire"
     t.string   "description"
+    t.string   "ext_desc"
     t.string   "address"
     t.string   "city"
     t.string   "country"
-    t.integer  "min_day_rent"
-    t.integer  "max_day_rent"
     t.integer  "price_per_day"
     t.string   "brand"
     t.string   "model"
     t.string   "image"
     t.string   "type_vehicle"
     t.string   "model_year"
-    t.integer  "cc"
     t.string   "accessories"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "cc"
+    t.string   "min_day_rent"
+    t.string   "max_day_rent"
   end
 
   add_foreign_key "taggings", "tags"

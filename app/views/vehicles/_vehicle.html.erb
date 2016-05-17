@@ -1,12 +1,22 @@
 <%= div_for vehicle do %>
-  <div class="large-12 columns border border-box glassy-bg mt pt">
-    <strong><%= h(vehicle.description) %></strong><br />
-    <sup class="text-muted">From <%= time_ago_in_words(vehicle.created_at)%></sup><br />
-    <div class="mb pb">
+  <div>
+    <strong><%= link_to h(vehicle.description), vehicle_path(vehicle.id) %></strong><br />
+    <span class="image left"><%=image_tag vehicle.image %></span>
+    <sup>From <%= time_ago_in_words(vehicle.created_at)%></sup><br />
+    <div>
       <%= h(vehicle.brand) %>
     </div>
-    <div class="tags">
+    <div>
+      <%= h(vehicle.model) %>
+    </div>
+    <div>
+      <%= h(vehicle.cc) %>
+    </div>
+    <div>
       <%=raw tag_links(vehicle.all_tags) %>
     </div>
   </div>
+  <br>
 <% end %>
+
+

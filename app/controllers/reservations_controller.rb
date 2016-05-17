@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
       ReservationMailer.booking_email(@customer, @host, @reservation).deliver_now
         redirect_to @reservation
     else 
-      flash[:warning]="Dates you chosen is not available, please select other dates"
+      flash[:alert]="The dates you have chosen are not available, please select other dates!"
       redirect_to vehicle_path(@reservation.vehicle.id)
   end
 end 
@@ -25,6 +25,7 @@ end
   def show
     @reservation=Reservation.find(params[:id])
     @vehicle=Vehicle.find(@reservation.vehicle_id)
+    @user = User.find(@vehicle.user_id)
   end
 
   def edit

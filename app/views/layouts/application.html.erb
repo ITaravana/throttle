@@ -3,7 +3,6 @@
   <head>
     <title>OpenThrottle</title>
 
-  
   <%= csrf_meta_tags %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +18,7 @@
 
       <!-- Header -->
         <header id="header">
-          <h1 id="logo"><a href="index.html">OpenThrottle</a></h1>
+          <h1 id="logo"><%= link_to 'OpenThrottle', root_path %></h1>
           <nav id="nav">
             <ul>
               <li><a href="index.html">Home</a></li>
@@ -42,15 +41,24 @@
               </li>
               <li><a href="elements.html">Elements</a></li>
               <li>  <% if signed_in? %>
-                    <%= current_user.email %>
-                    <%= link_to 'Sign out', sign_out_path, method: :delete %>
+                    <%= link_to "My Profile", user_path(current_user.id) %>
+                    <ul>
+                  <li>Hey <%= current_user.email %></li>
+                  <li><a href="left-sidebar.html"> > Show my bookings</a></li>
+                  <li><a href="right-sidebar.html"> > Show my listings</a></li>
+                  <li>
+                    </ul>
                     <% else %>
                     <%= link_to 'Sign in', sign_in_path %>
-                    <% end %></li>
+                    <% end %>
+              </li>
+              <li>  <% if signed_in? %>
+                    <%= link_to 'Sign out', sign_out_path, method: :delete %>
+                    <% end %>
+              </li>
             </ul>
           </nav>
         </header>
-
         <div id="flash">
           <% flash.each do |key, value| %>
             <div class="flash <%= key %>"><%= value %></div>

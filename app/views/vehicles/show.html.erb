@@ -1,43 +1,107 @@
-<h1>Vehicles#show</h1>
-<p>Find me in app/views/vehicles/show.html.erb</p>
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2><%=@vehicle.description %></h2>
+								<% if flash[:alert] %>
+									  <div class="alert alert-danger">
+									    <h3><strong>*** <%= flash[:alert] %> ***</strong></h3>
+									  </div>
+								<% end %>
+						</header>
+						<div class="row 150%">
+							<div class="8u 12u$(medium)">
 
-<strong>Vehicle Id:<%=@vehicle.id %></strong>
+								<!-- Content -->
+									<section id="content">
+										<span class="image fit"><%=image_tag @vehicle.image.to_s %></span>
+										
+										<h3>Motorbike's description:</h3>
+										<p><%=@vehicle.ext_desc%></p>
 
-<h1><%=image_tag @vehicle.image.to_s %></h1>
-
-<h2>Description:<%=@vehicle.description %></h2>
-
-<h3>Price per day:<%=@vehicle.price_per_day %> $</h3>
-
-<h4>Min/Max Number of days to rent:<%=@vehicle.min_day_rent%>/<%=@vehicle.max_day_rent%></h4>
-
-<h5>City:<%=@vehicle.city %></h5>
-
-<strong>Country:<%=@vehicle.country %></strong>
-
- <p class="content"><%= @vehicle.brand %></p> 
-  <p class="content"><%= @vehicle.type_vehicle %></p> 
-  <p class="content"><%= @vehicle.model_year%></p> 
-  <p class="content"><%= @vehicle.cc%></p>
-  <p class="content"><%= @vehicle.accessories%></p>
-
-
-<h2 style="color:blue;">Book now</h2>
-<%= form_for @reservation, url: reservations_path do |t| %>
-
-<%=t.hidden_field :user_id, value: current_user.id%>
-<%=t.hidden_field :vehicle_id, value: @vehicle.id%> 
-<%= t.label :check_in_date %> 
-<%= t.date_field :check_in_date%> 
-
-<%= t.label :check_out_date %> 
-<%= t.date_field :check_out_date%>
-
-<%=t.submit "Book now!!"%>
-<%end%>
+									<section id="content">
+									<ul>
+									<blockquote>Price per day: <strong>US$ <%=@vehicle.price_per_day %></strong> </blockquote>
+									</ul>
+									</section>
 
 
+										<h4>What's in the package?</h4>
+										<ul>
+											<li><strong>Brand:</strong> <%= @vehicle.brand %></li>
+											<li><strong>Model:</strong> <%= @vehicle.model%> </li>
+											<li><strong>Model year:</strong> <%= @vehicle.model_year%> </li>
+											<li><strong>Type:</strong> <%= @vehicle.type_vehicle %></li>
+											<li><strong>CC:</strong> <%= @vehicle.cc%></li>
+											<li><strong>Accessories:</strong> <%= @vehicle.accessories%></li>
+										</ul>
+									</section>
 
 
+									<section id="content">
+									<h5>Max number of days you can rent the bike for: <strong><%=@vehicle.max_day_rent%></strong>.</h5>
+									<br>
+									<p>Tags: <%=raw tag_links_button(@vehicle.all_tags)%></p>	
+									</section>
+									<hr>
+								<section>
+								<header class="major">
+									<h2>Book this bike now!</h2>
+									<p>Go for a ride.</p>
+									<%= form_for @reservation, url: reservations_path do |t| %>
+										<%=t.hidden_field :user_id, value: current_user.id%>
+										<%=t.hidden_field :vehicle_id, value: @vehicle.id%> 
+										<%= t.label :check_in_date %> 
+										<%= t.date_field :check_in_date%>
+										<br> 
+										<br>
+										<%= t.label :check_out_date %> 
+										<%= t.date_field :check_out_date%>
+									<br>
+									<br>
+									<%=t.submit "Book now!"%>
+										<%end%>
+								</header>
+								</section>
 
+							</div>
+							<div class="4u$ 12u$(medium)">
 
+								<!-- Sidebar -->
+									<section id="sidebar">
+											<h3>Information about the owner</h3>
+											<%= image_tag(@user.pic.to_s, class: "image round")%>
+											<p><strong>Name:</strong> <%= @user.first_name %></p>
+											<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit.</p>
+											<footer>
+												<ul class="actions">
+													<li><a href="#" class="button">See all this user's motorbikes</a></li>
+												</ul>
+											</footer>
+										</section>
+										<hr />
+										<section>
+											<h3>Where's the bike located?</h3>
+											<span class="image fit"><%=image_tag "http://www.enchantehotel.com/wp-content/themes/sage/dist/images/Google-Map-Mobile.jpg" %></span>
+											<ul>
+											<li><strong>Country:</strong> <%=@vehicle.country %></li>
+											<li><strong>City:</strong> <%=@vehicle.city %></li>
+											<li><strong>Address:</strong> <%=@vehicle.address %></li>
+											</ul>
+										</section>
+										<section>
+											<h3>Other bikes nearby:</h3>
+											<span class="image fit"><%=image_tag "http://www.siampod.com/wp-content/uploads/2013/07/google-map-2_07.jpg" %></span>
+											<ul>
+											<li><strong>Bla</strong></li>
+											<li><strong>Bla</strong></li>
+											<li><strong>Bla</strong></li>
+											</ul>
+										</section>
+
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</div>

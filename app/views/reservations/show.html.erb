@@ -1,27 +1,76 @@
-<h1>Reservation#show</h1>
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Booking confirmation</h2>
+							<p>Congrats! You booked this motorbike for the following dates. <strong>Start:</strong> <%= @reservation.check_in_date %> - <strong>End:</strong> <%= @reservation.check_out_date %></p> 
+							<p>You'll receive a confirmation email shortly with all the details. Enjoy your ride!</p>
+						</header>
+						<div class="row 150%">
+							<div class="8u 12u$(medium)">
 
-<p>Check your booking !</p>
+								<!-- Content -->
+									<section id="content">
+										<span class="image fit"><%=image_tag @vehicle.image.to_s %></span>
+										
+										<h3>Motorbike's description:</h3>
+										<p><%=@vehicle.ext_desc%></p>
+
+									<section id="content">
+									<ul>
+									<blockquote>Price per day: <strong>US$ <%=@vehicle.price_per_day %></strong> </blockquote>
+									</ul>
+									</section>
 
 
-<strong>Vehicle Id:<%=@vehicle.id %></strong>
+										<h4>What's in the package?</h4>
+										<ul>
+											<li><strong>Brand:</strong> <%= @vehicle.brand %></li>
+											<li><strong>Model:</strong> <%= @vehicle.model%> </li>
+											<li><strong>Model year:</strong> <%= @vehicle.model_year%> </li>
+											<li><strong>Type:</strong> <%= @vehicle.type_vehicle %></li>
+											<li><strong>CC:</strong> <%= @vehicle.cc%></li>
+											<li><strong>Accessories:</strong> <%= @vehicle.accessories%></li>
+										</ul>
+									</section>
 
-<h1><%=image_tag @vehicle.image.to_s %></h1>
 
-<h2>Description:<%=@vehicle.description %></h2>
+									<section id="content">
+									<h5>Max number of days you can rent the bike for: <strong><%=@vehicle.max_day_rent%></strong>.</h5>
+									<br>
+									<p>Tags: <%=raw tag_links_button(@vehicle.all_tags)%></p>	
+									</section>
+									<hr>
 
-<h3>Price per day:<%=@vehicle.price_per_day %> $</h3>
+							</div>
+							<div class="4u$ 12u$(medium)">
 
-<h4>Min/Max Number of days to rent:<%=@vehicle.min_day_rent%>/<%=@vehicle.max_day_rent%></h4>
+								<!-- Sidebar -->
+									<section id="sidebar">
+											<h3>Information about the owner</h3>
+											<%= image_tag(@user.pic.to_s, class: "image round")%>
+											<p><strong>Name:</strong> <%= @user.first_name %></p>
+											<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit.</p>
+											<footer>
+												<ul class="actions">
+													<li><a href="#" class="button">See all this user's motorbikes</a></li>
+												</ul>
+											</footer>
+										</section>
+										<hr />
+										<section>
+											<h3>Where's the bike located?</h3>
+											<span class="image fit"><%=image_tag "http://www.enchantehotel.com/wp-content/themes/sage/dist/images/Google-Map-Mobile.jpg" %></span>
+											<ul>
+											<li><strong>Country:</strong> <%=@vehicle.country %></li>
+											<li><strong>City:</strong> <%=@vehicle.city %></li>
+											<li><strong>Address:</strong> <%=@vehicle.address %></li>
+											</ul>
+										</section>
 
-<h5>City:<%=@vehicle.city %></h5>
+									</section>
 
-<strong>Country:<%=@vehicle.country %></strong>
-
- <p class="content"><%= @vehicle.brand %></p> 
-  <p class="content"><%= @vehicle.type_vehicle %></p> 
-  <p class="content"><%= @vehicle.model_year%></p> 
-  <p class="content"><%= @vehicle.cc%></p>
-  <p class="content"><%= @vehicle.accessories%></p>
-
-<strong>Your check_in_date : <%= @reservation.check_in_date %></strong>
-<strong>Your check_out_date : <%= @reservation.check_out_date %> </strong>
+							</div>
+						</div>
+					</div>
+				</div>

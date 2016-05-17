@@ -3,6 +3,9 @@ class VehiclesController < ApplicationController
   # respond_to :html, :js
   
   def new
+    @vehicle = Vehicle.new
+    @lastvehicle = Vehicle.last
+    @vehicles = Vehicle.order(created_at: :desc).limit(16)
   end
 
   def create
@@ -30,7 +33,8 @@ class VehiclesController < ApplicationController
 
   def show
      @vehicle = Vehicle.find(params[:id])
-     @reservation =Reservation.new 
+     @reservation =Reservation.new
+     @user = User.find(@vehicle.user_id)
   end
 
   def update
@@ -49,7 +53,7 @@ class VehiclesController < ApplicationController
 
 private 
   def vehicle_params 
-    params.require(:vehicle).permit(:user_id, :on_hire, :description, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
+    params.require(:vehicle).permit(:user_id, :on_hire, :description, :ext_desc, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
   end
 
 end

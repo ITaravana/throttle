@@ -1,18 +1,70 @@
-<h1>Users#show</h1>
 
-<div class="user"> 
-  <p class="content"><%= image_tag @user.pic.to_s %></p>
-  <p class="content">Hello <%= @user.first_name %>, and welcome to Throttle!</p>
-  <br>
-</div> 
+<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Your Profile</h2>
+							<p>Hello <%= @user.first_name %>, and welcome to OpenThrottle!</p>
+						</header>
+						<div class="row 150%">
+							<div class="4u 12u$(medium)">
 
-<div class="row text-center" id="upload_image">
-<%= form_for @user, url: user_path(@user.id) do |x| %>
-    <div class="large-10 large-centered columns">
-    <%= x.label :pic %><br>
-     <%= x.file_field :pic %>
-    </div>
-    <div class="large-10 large-centered columns" id="upload_image">
-    <%= x.submit "Upload" %>
- </div>
- <% end %>
+								<!-- Sidebar -->
+									<section id="sidebar">
+										<section>
+											<h3>Upload a profile picture</h3>
+											<p>Give some pep to your profile, upload a pic of you on your ride of choice</p>
+											<%= form_for @user, url: user_path(@user.id) do |x| %>
+											<footer>
+												<ul class="actions">
+													<li><%= x.file_field :pic %></li>
+												</ul>
+											</footer>
+										     
+										     <%= x.submit "Upload" %>
+										 <% end %>
+											
+										</section>
+										<hr />
+										<section>
+											<a href="#" class="image fit"><%= image_tag @user.pic.to_s %></a>
+											<h3>Amet Lorem Tempus</h3>
+											<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+											<footer>
+												<ul class="actions">
+													<li><a href="#" class="button">Learn More</a></li>
+												</ul>
+											</footer>
+										</section>
+									</section>
+
+							</div>
+							<div class="8u$ 12u$(medium) important(medium)">
+
+								<!-- Content -->
+									<section id="content">
+										<a href="#" class="image fit"><%=image_tag "picsunset.jpg" %></a>
+										<h3>Your vehicles for rent</h3>
+										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
+										<ul>
+											<li>Faucibus orci lobortis ac adipiscing integer.</li>
+											<li>Col accumsan arcu mi aliquet placerat.</li>
+											<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
+											<li>Blandit massa non blandit tempor interdum.</li>
+											<li>Lacinia mattis arcu nascetur lobortis.</li>
+										</ul>
+										<p><div class="button"><%= link_to 'Create a new vehicle for rent', new_vehicle_path %></div></p>
+										<h3>Your rented vehicles</h3>
+										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
+										<ul>
+											<li>Faucibus orci lobortis ac adipiscing integer.</li>
+											<li>Col accumsan arcu mi aliquet placerat.</li>
+											<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
+											<li>Blandit massa non blandit tempor interdum.</li>
+											<li>Lacinia mattis arcu nascetur lobortis.</li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</div>

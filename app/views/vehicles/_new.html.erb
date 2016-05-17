@@ -1,102 +1,99 @@
-<div class="row text-center">
+<div>
+
 <%= form_for(@vehicle, remote: true) do |f| %>
 
-<div class="large-10 large-centered columns">
-  <%= f.label :description %><br>
-  <%= f.text_area :description, placeholder: "Description" %><br>
+<div>
+  <%= f.label "Catchy title for your motorbike rental:" %>
+  <%= f.text_field :description, placeholder: "Your rental title" %><br>
 </div>
 
-<div class="large-10 large-centered columns">
-  <%= f.label :address %><br>
-  <%= f.text_field :address %><br>
+<div>
+  <%= f.label "Address where your motorbike is located:" %>
+  <%= f.text_field :address, placeholder: "Please enter a street address (e.g: 123 Sunset Boulevard)" %><br>
 </div>
 
-<div class="large-10 large-centered columns">
- <%= f.label :city %><br>
- <%= f.text_field :city %><br>
+<div>
+ <%= f.label "City:" %>
+ <%= f.text_field :city, placeholder: "Please enter the city where the bike is located" %><br>
 </div>
 
-<div class="large-10 large-centered columns">
-  <%= f.label :country %><br>
+<div>
+  <%= f.label "Country:" %>
   <%= f.country_select :country %><br>
 </div>
 
-<div class="large-10 large-centered columns">
-  <%= f.label :min_day_rent, "Minimum number of days:" %><br>
-  <%= f.number_field :min_day_rent, :in => 0..15, :step => 1 %><br>
+<div>
+  <%= f.label :max_day_rent, "Maximum number of days you'd be willing to rent it out:" %>
+  <%= f.select :max_day_rent, ['1 day max', 'up to 2 days', 'up to 3 days', 'up to 4 days', 'up to 5 days', 'up to 6 days', 'up to 7 days', 'More than 7 days', 'More than a month']%> <br>
 </div>
 
- <div class="large-10 large-centered columns">
-  <%= f.label :max_day_rent, "Maximum number of days:"%><br>
-  <%= f.number_field :max_day_rent, :in => 1..90, :step => 1 %><br>
+<div>
+  <%= f.label :price_per_day, "Price per day:" %>
+  <%= f.text_field :price_per_day, placeholder: "Please input only a number, in US dollars (eg: 25)" %><br><br>
  </div>
 
-<div class="large-10 large-centered columns">
-  <%= f.label :price_per_day, "Price per day:" %><br>
-  <%= f.number_field :price_per_day, :in => 0..1000, :step => 5 %><br>
- </div>
-
-<div class="large-10 large-centered columns">
-  <%= f.label :brand %><br>
-  <%= f.text_field :brand %><br>
+<div>
+  <%= f.label "Brand:" %>
+  <%= f.text_field :brand, placeholder: "Suzuki? Kawasaki? Triumph? Royal Enfield?" %><br>
 </div>
  
- <div class="large-10 large-centered columns">
-   <%= f.label :model %><br>
-   <%= f.text_area :model %><br>
+ <div>
+   <%= f.label "Model:" %>
+   <%= f.text_area :model, placeholder: "Street triple? ER6-N? Bullet? Hayabusa?" %><br>
   </div>
 
-<div class="large-10 large-centered columns">
-   <%= f.label :model_year %><br>
+<div>
+   <%= f.label "Year of production:" %>
    <%= f.select :model_year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1) %> <br>
   </div>
 
-<div class="large-10 large-centered columns">
-   <%= f.label :type_vehicle %><br>
-   <%= f.radio_button :type_vehicle, 'Roadster', :checked => true %> Roadster
-   <%= f.radio_button :type_vehicle, 'Cruiser'%> Cruiser
-   <%= f.radio_button :type_vehicle, 'Sport Bike'%> Sport Bike
-   <%= f.radio_button :type_vehicle, 'Touring'%> Touring
-   <%= f.radio_button :type_vehicle, 'Sport Touring'%> Sport Touring
-   <%= f.radio_button :type_vehicle, 'Dual Sport'%> Dual Sport
-   <%= f.radio_button :type_vehicle, 'Scooter/Moped'%> Scooter/Moped
-   <%= f.radio_button :type_vehicle, 'Off Road'%> Off Road 
-   <%= f.radio_button :type_vehicle, 'Vintage'%> Vintage<br>
+<div>
+   <%= f.label "What type of motorbike is it?" %>
+  <%= f.select :type_vehicle, ['Roadster', 'Cruiser', 'Sport Bike', 'Touring', 'Sport Touring', 'Dual Sport', 'Scooter/Moped', 'Off Road', 'Vintage']%> <br>
+
+<div>
+   <%= f.label :cc, "Your bike's CC" %>
+   <%= f.select :cc, ['Up to 49cc', '50 to 124cc', '125 to 499cc', '500 to 799cc', '800 to 1199cc', '1200cc and beyond']%> <br>
 </div>
 
-<div class="large-10 large-centered columns">
-   <%= f.label :cc, "Your bike's CC" %><br>
-   <%= f.number_field :cc, :in => 50..1500, :step => 25 %><br>
+<div>
+    <%= f.label "Do you provide any accessories with the bike?" %>
+    <%= f.text_area :accessories, placeholder: "Helmets? Goggles? Saddlebags?" %><br>
 </div>
 
-<div class="large-10 large-centered columns">
-    <%= f.label :accessories %><br>
-    <%= f.text_area :accessories %><br>
+<div>
+  <%= f.label "Please describe your motorbike in a few lines:" %>
+  <%= f.text_area :ext_desc, placeholder: "Tell people why your bike is awesome and the thrills they are gonna get from riding it." %><br>
 </div>
 
-<div class="large-10 large-centered columns">
-    <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
+<div>
+    <%= f.label "Tag your motorbike!" %>
+    <%= f.text_field :all_tags, placeholder: "Please separate your tags with a comma. Eg: Vintage, Triumph, 1967, legendary" %>
 </div>
 
 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
 
 <%=f.hidden_field :user_id, value: current_user.id%>
 
- <div class="large-10 large-centered columns" id="create_vehicle">
-    <%= f.submit "Create" %>
+<br>
+ <div id="create_vehicle">
+    <%= f.submit "Click to create your rental!" %>
  </div>
-
-<% end %>
 
 </div>
 
-<div class="row text-center" id="upload_image">
+<% end %>
+
+<br>
+
+
+<div id="upload_image">
 <%= form_for @lastvehicle, url: vehicle_path(@lastvehicle.id) do |x| %>
-    <div class="large-10 large-centered columns">
-    <%= x.label :image %><br>
+    <div>
+    <%= x.label :image, "Once your listing is created, you can choose an image to represent your motorbike!" %><br>
      <%= x.file_field :image %>
     </div>
-    <div class="large-10 large-centered columns" id="upload_image">
+    <div id="upload_image">
     <%= x.submit "Upload" %>
  </div>
 

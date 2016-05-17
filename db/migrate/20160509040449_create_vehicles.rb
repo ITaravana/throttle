@@ -4,6 +4,7 @@ class CreateVehicles < ActiveRecord::Migration
     	t.integer :user_id
     	t.boolean :on_hire
     	t.string :description
+        t.string :ext_desc
     	t.string :address
     	t.string :city
     	t.string :country
