@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>OpenThrottle</title>
-
-  <%= csrf_meta_tags %>
+ <%= include_gon(:init => true) %>  
+<%= javascript_include_tag "vendor/modernizr" %>
+<%= csrf_meta_tags %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -21,7 +22,7 @@
           <h1 id="logo"><%= link_to 'OpenThrottle', root_path %></h1>
           <nav id="nav">
             <ul>
-              <li><a href="index.html">Home</a></li>
+              <li><%= link_to 'Home', root_path %></li>
               <li>
                 <a href="#">Layouts</a>
                 <ul>
@@ -58,6 +59,7 @@
               </li>
             </ul>
           </nav>
+          <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
         </header>
         <div id="flash">
           <% flash.each do |key, value| %>

@@ -26,7 +26,28 @@ class User < ActiveRecord::Base
     true
   end
 
+  # def cart_total_price
+  # total_price = 0
+  # get_cart_reservations.each { |reservation| total_price += reservation.total_price }
+  # total_price
+  # end
 
+  # def get_cart_reservations
+  #   cart_ids = $redis.smembers "cart#{id}"
+  #   Reservation.find(cart_ids)
+  # end
 
+  # def purchase_cart_reservations!
+  #   get_cart_reservations.each { |reservation| purchase(reservation) }
+  #   $redis.del "cart#{id}"
+  # end
+
+  def purchase(reservation)
+    reservations << reservation unless purchase?(reservation)
+  end
+
+  def purchase?(reservation)
+    reservations.include?(reservation)
+  end
 
 end

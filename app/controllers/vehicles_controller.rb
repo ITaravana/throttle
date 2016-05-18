@@ -35,6 +35,10 @@ class VehiclesController < ApplicationController
      @vehicle = Vehicle.find(params[:id])
      @reservation =Reservation.new
      @user = User.find(@vehicle.user_id)
+     if !Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).nil?
+     @total_price = Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).total_price
+   end
+     gon.client_token = generate_client_token
   end
 
   def update
@@ -48,12 +52,21 @@ class VehiclesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @vehicle = Vehicle.find(params[:id])
+    @reservation = Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id)
+    @cancel = @reservation.destroy
+    redirect_to vehicle_path(@vehicle.id)
   end
+
 
 private 
   def vehicle_params 
     params.require(:vehicle).permit(:user_id, :on_hire, :description, :ext_desc, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
   end
+
+def generate_client_token
+  Braintree::ClientToken.generate
+end
 
 end

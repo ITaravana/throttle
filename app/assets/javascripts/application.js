@@ -16,4 +16,3 @@
 //= require jquery.min
 //= require foundation
 //= require_tree .
-

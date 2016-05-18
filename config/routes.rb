@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/new'
+
   root 'welcome#index'
 
   get 'users/show'
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :reservations
 
+  resources :transactions, only: [:new, :create]
+
   resources :users, only: [:show, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
   get 'tags/:tag', to: 'welcome#index', as: "tag"
+
+  get "/vehicle/payment", to: "vehicle#payment"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -12,10 +12,14 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @customer = @reservation.user
     @host = User.find(@reservation.vehicle.user_id)
-
+    @reservation.pay_check = true
+    @days = @reservation.check_out_date - @reservation.check_in_date
+    @vehicle = Vehicle.find(@reservation.vehicle_id)
+    @total_price = @days * @vehicle.price_per_day
+    @reservation.total_price = @total_price
     if @reservation.save 
       ReservationMailer.booking_email(@customer, @host, @reservation).deliver_now
-        redirect_to @reservation
+        redirect_to @vehicle
     else 
       flash[:alert]="The dates you have chosen are not available, please select other dates!"
       redirect_to vehicle_path(@reservation.vehicle.id)
@@ -56,3 +60,5 @@ end
     params.require(:reservation).permit(:vehicle_id, :user_id, :check_in_date , :check_out_date)
   end
 end
+
+
