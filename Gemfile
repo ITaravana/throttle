@@ -33,7 +33,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem "font-awesome-rails"
 gem 'braintree'
 gem 'gon'
-
+gem 'will_paginate', '3.0.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -23,12 +23,14 @@ class VehiclesController < ApplicationController
 
   
   def index
-    @vehicle = Vehicle.all
-     if params[:tag]
-    @vehicles = Vehicle.tagged_with(params[:tag])
-  else
-    @vehicles = Vehicle.all
-  end
+
+    # @vehicles = Vehicle.all.paginate(page: params[:page], per_page: 5)
+
+      if params[:tag]
+        @vehicles = Vehicle.tagged_with(params[:tag])
+      else
+        @vehicles = Vehicle.all.order('created_at DESC').paginate(page: params[:page], per_page: 2)
+      end
   end
 
   def show

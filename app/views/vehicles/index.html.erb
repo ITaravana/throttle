@@ -1,21 +1,65 @@
-<h1>Vehicle#index</h1>
+<!-- Main -->
 
-<% @vehicles.reverse.each do |vehicle| %> 
-<div class="vehicle"> 
-   <%= link_to 'Book this motorbike now!', vehicle_path(vehicle) %>
-  <p class="content"><%= vehicle.description %></p> 
-  <p class="content"><%= vehicle.address %></p> 
-  <p class="content"><%= vehicle.city %></p> 
-  <p class="content"><%= vehicle.country %></p> 
-  <p class="content"><%= vehicle.min_day_rent %></p> 
-  <p class="content"><%= vehicle.max_day_rent %></p> 
-  <p class="content"><%= vehicle.price_per_day %></p> 
-  <p class="content"><%= vehicle.brand %></p> 
-  <p class="content"><%= vehicle.type_vehicle %></p> 
-  <p class="content"><%= vehicle.model_year%></p> 
-  <p class="content"><%= vehicle.cc%></p>
-  <p class="content"><%= vehicle.accessories%></p>
-  <p class="content"><%= image_tag vehicle.image.to_s %></p>
-  <br>
-</div> 
-<% end %>
+<div id="main" class="wrapper style1">
+  <div class="container">
+    <header class="major">
+      <h2>Check out the latest vehicles for rent on OpenThrottle</h2>
+      <p>Go for a ride. The road is calling.</p>
+    </header>
+    <div class="row 150%">
+      <div class="4u 12u$(medium)">
+
+        <!-- Sidebar -->
+        <section id="sidebar">
+          <section>
+            <h3>Magna Feugiat</h3>
+            <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+            <footer>
+              <ul class="actions">
+                <li><a href="#" class="button">Learn More</a></li>
+              </ul>
+            </footer>
+          </section>
+          <hr />
+          <section>
+            <a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+            <h3>Amet Lorem Tempus</h3>
+            <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+            <footer>
+              <ul class="actions">
+                <li><a href="#" class="button">Learn More</a></li>
+              </ul>
+            </footer>
+          </section>
+        </section>
+
+      </div>
+      <%= will_paginate @vehicles %>
+      <div class="8u$ 12u$(medium) important(medium)">
+        <% @vehicles.each do |vehicle| %> 
+        <!-- Content -->
+        <section id="content">
+          <span class="image fit"><%=image_tag vehicle.image.to_s %></span>
+          <span><h6>Added: <%= vehicle.created_at %></h6></span>
+          <h3><%= vehicle.description %></h3>
+
+          <ul>
+            <li><strong>Brand:</strong> <%= vehicle.brand %></li>
+            <li><strong>Model:</strong> <%= vehicle.model%> </li>
+            <li><strong>CC:</strong> <%= vehicle.cc%></li>
+          </ul>
+          <ul>
+            <blockquote>Price per day: <strong>US$ <%=vehicle.price_per_day %></strong> </blockquote>
+          </ul>
+          <h3><%= button_to 'Book this motorbike now!', vehicle_path(vehicle), method: "get"%></h3>
+          <header class="major"></header>
+        </section>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
