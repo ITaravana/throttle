@@ -18,7 +18,6 @@ class ReservationsController < ApplicationController
     @total_price = @days * @vehicle.price_per_day
     @reservation.total_price = @total_price
     if @reservation.save 
-      ReservationMailer.booking_email(@customer, @host, @reservation).deliver_now
         redirect_to @vehicle
     else 
       flash[:alert]="The dates you have chosen are not available, please select other dates!"

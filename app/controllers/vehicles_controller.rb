@@ -37,6 +37,9 @@ class VehiclesController < ApplicationController
      @user = User.find(@vehicle.user_id)
      if !Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).nil?
      @total_price = Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).total_price
+     @beginning = Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).check_in_date
+     @end = Reservation.find_by_user_id_and_vehicle_id(current_user.id, @vehicle.id).check_out_date
+     @days = (@end - @beginning).to_i
    end
      gon.client_token = generate_client_token
   end
