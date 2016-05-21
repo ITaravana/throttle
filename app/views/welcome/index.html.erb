@@ -20,8 +20,9 @@
 							<div class="row">
 								<div class="4u 12u$(medium)">
 									<header>
-										<h2>Odio faucibus ipsum integer consequat</h2>
-										<p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
+										<h2>Need a Ride? Stop Searching. Start Riding.</h2>
+
+										<p>OpenThrottle is the world leading peer-to-peer motorcycle rental.</p>
 									</header>
 								</div>
 								<div class="4u 12u$(medium)">
@@ -49,12 +50,12 @@
 					<span class="image fit main"><%=image_tag "pic03.jpg" %></span>
 					<div class="content">
 						<header>
-							<h2>Interdum amet non magna accumsan</h2>
-							<p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
+							<h2>Make money with your motorbike</h2>
+							<p>Your bike sits idle. Make it roam for you and earn cash.</p>
 						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
+						<p>Let' be honest, even though we'd like it, we can't be riding our bikes all the time. Harness the power of the web and rent it out, peer-to-peer style.</p> <p> People like you are on the lookout for good clean fun, and would love to pay you to rent your ride for a day or two. 	</p>
 						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
+							<li><div class="button"><%= link_to "Sounds great, I\'m in", sign_up_path %></div></li>
 						</ul>
 					</div>
 					<a href="#three" class="goto-next scrolly">Next</a>
@@ -65,12 +66,12 @@
 					<span class="image fit main bottom"><%=image_tag "pic04.jpg" %></span>
 					<div class="content">
 						<header>
-							<h2>Interdum felis blandit praesent sed augue</h2>
-							<p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
+							<h2>Borrow a bike</h2>
+							<p>Rent the motorcycle of your dreams from people who really care</p>
 						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
+						<p>Have you ever wished you could snap a finger and instantly be on the road with your buddies? Well, we're not there *yet* but pretty damn close!</p><p> With Open Throttle, you choose your ride, book it, and you're good to go.</p><p>Best of all, the people you borrow the bike from are just like you and will care all the way.</p>
 						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
+							<li><%= link_to 'Show all bikes for rent', vehicles_path, :class => "button" %></li>
 						</ul>
 					</div>
 					<a href="#four" class="goto-next scrolly">Next</a>
@@ -80,48 +81,42 @@
 				<section id="four" class="wrapper style1 special fade-up">
 					<div class="container">
 						<header class="major">
-							<h2>Accumsan sed tempus adipiscing blandit</h2>
-							<p>Iaculis ac volutpat vis non enim gravida nisi faucibus posuere arcu consequat</p>
-						</header>
+							<h2>OpenThrottle makes sure you get a smooth ride</h2>
+							</header>
 						<div class="box alt">
 							<div class="row uniform">
 								<section class="4u 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-area-chart"></span>
-									<h3>Ipsum sed commodo</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<span class="icon alt major fa-motorcycle"></span>
+									<h3>YOUR MOTORCYCLE IS SAFE</h3>
+									<p>Peace of mind is included with every rental. Your bike is fully insured by one of our trusted partners</p>
 								</section>
 								<section class="4u 6u$(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-comment"></span>
-									<h3>Eleifend lorem ornare</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<span class="icon alt major fa-comments"></span>
+									<h3>24H CUSTOMER SERVICE</h3>
+									<p>We are here always 365 days, 24X7. You ride, we take care of rest.</p>
 								</section>
 								<section class="4u$ 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-flask"></span>
-									<h3>Cubilia cep lobortis</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<span class="icon alt major fa-cogs"></span>
+									<h3>RELIABLE BIKES</h3>
+									<p>All bikes listed on Openthrottle are reliable and safe. We ensure all bikes fit descriptions.</p>
 								</section>
 								<section class="4u 6u$(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-paper-plane"></span>
-									<h3>Non semper interdum</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<span class="icon alt major fa-usd"></span>
+									<h3>FIXED RATES</h3>
+									<p>Once the bike is booked, rate would never change or surge. Be it a weekend, weekday or a holiday.</p>
 								</section>
 								<section class="4u 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-file"></span>
-									<h3>Odio laoreet accumsan</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<span class="icon alt major fa-heart"></span>
+									<h3>NO MEMBERSHIP FEES</h3>
+									<p>OpenThrottle is free to join. No monthly or annual fees for owners or renters.</p>
 								</section>
 								<section class="4u$ 6u$(medium) 12u$(xsmall)">
 									<span class="icon alt major fa-lock"></span>
-									<h3>Massa arcu accumsan</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+									<h3>YOU ARE IN CONTROL</h3>
+									<p>You don't have to approve a renter unless you are 100% comfortable.</p>
 								</section>
 							</div>
 						</div>
-						<footer class="major">
-							<ul class="actions">
-								<li><a href="#" class="button">Magna sed feugiat</a></li>
-							</ul>
-						</footer>
 					</div>
 				</section>
 
@@ -149,7 +144,7 @@
 						</header>
 						
 							<div class="actions">
-								<div class="actions"><div class="button"><%= link_to 'Sign up now and find your dream ride', sign_in_path %></div></div>
+								<div class="actions"><div class="button"><%= link_to 'Sign up now and find your dream ride', sign_in_path %></div></div><br>
 								<div class="actions"><div class="button"><%= link_to 'Sign up with Facebook', "/auth/facebook" %></div></div>
 							</div>
 					</div>

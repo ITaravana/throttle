@@ -29,7 +29,7 @@ class VehiclesController < ApplicationController
       if params[:tag]
         @vehicles = Vehicle.tagged_with(params[:tag])
       else
-        @vehicles = Vehicle.all.order('created_at DESC').paginate(page: params[:page], per_page: 2)
+        @vehicles = Vehicle.all.order('created_at DESC').paginate(page: params[:page], per_page: 4)
       end
   end
 

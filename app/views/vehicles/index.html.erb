@@ -3,7 +3,7 @@
 <div id="main" class="wrapper style1">
   <div class="container">
     <header class="major">
-      <h2>Check out the latest vehicles for rent on OpenThrottle</h2>
+      <h2>Check out the latest motorcycles for rent on OpenThrottle</h2>
       <p>Go for a ride. The road is calling.</p>
     </header>
     <div class="row 150%">
@@ -12,22 +12,17 @@
         <!-- Sidebar -->
         <section id="sidebar">
           <section>
-            <h3>Magna Feugiat</h3>
-            <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
-            <footer>
-              <ul class="actions">
-                <li><a href="#" class="button">Learn More</a></li>
-              </ul>
-            </footer>
+            <span class="image fit main"><%=image_tag "picindex.png" %></span>
+            <p>Here, you'll find all the latest motorcycles posted for rent on OpenThrottle.</p>
           </section>
           <hr />
           <section>
-            <a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-            <h3>Amet Lorem Tempus</h3>
-            <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+            <span class="image fit main"><%=image_tag "gmap.jpg" %></span>
+            <h3>See what's for rent near you!</h3>
+            <p>Imagin the treasures lying dormant in your neighborhood. From that cafe racer bikes you saw your neighbor fiddle with to that awesome Ducati you caught a glimpse of the other day. They are all on OpenThrottle.</p>
             <footer>
               <ul class="actions">
-                <li><a href="#" class="button">Learn More</a></li>
+                <li><a href="#" class="button">Map my ride</a></li>
               </ul>
             </footer>
           </section>
@@ -51,7 +46,13 @@
           <ul>
             <blockquote>Price per day: <strong>US$ <%=vehicle.price_per_day %></strong> </blockquote>
           </ul>
+          <% if current_user %>
           <h3><%= button_to 'Book this motorbike now!', vehicle_path(vehicle), method: "get"%></h3>
+          <%else%>
+          <div class="button"><%= link_to "Please sign-up to view more details about this motorcycle!", sign_up_path %></div>
+          <br>
+          <br>
+          <%end%>
           <header class="major"></header>
         </section>
         <% end %>

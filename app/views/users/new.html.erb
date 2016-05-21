@@ -1,19 +1,47 @@
 <div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
+<div id="main" class="wrapper style1">
+          <div class="container">
+            <header class="major">
+              <h2>Sign up and ignite the spark</h2>
+            </header>
+            <div class="row 150%">
+              <div class="8u 12u$(medium)">
 
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
+                <!-- Content -->
+                  <section id="content">
+                    <span class="image fit main"><%=image_tag "signup.jpg"%></span>
+                       <h3>Hello and welcome to OpenThrottle, please enter your info below:</h3>
+                   <%= form_for @user do |form| %>
+                   <%= render partial: '/users/form', object: form %>
+                 <div class="submit-field">
+                 <br>
+                   <%= form.submit %>
+                   <% end %>
+                  </section>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+              </div>
+              <div class="4u$ 12u$(medium)">
 
-    <div class="other-links">
-      <%= link_to t(".sign_in"), sign_in_path %>
-    </div>
-  <% end %>
+                <!-- Sidebar -->
+                  <section id="sidebar">
+                    <section>
+                      <h3>You can also sign-up with Facebook in 5 seconds!</h3>
+                      <%= button_to 'Facebook Sign-Up', "/auth/facebook" %>
+                    </section>
+                    <hr />
+                    <section>
+                      <h3>Already have a user account? Sign-in here!</h3>
+                      <div class="button"><%= link_to t(".sign_in"), sign_in_path %></div>
+                      <footer>
+                    </section>
+                  </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
 </div>
 
 
-<p> Sign up with Facebook!</p>
-<li><%= link_to 'Facebook', "/auth/facebook" %></li>
+
+                
