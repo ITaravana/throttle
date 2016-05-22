@@ -47,7 +47,7 @@
             <blockquote>Price per day: <strong>US$ <%=vehicle.price_per_day %></strong> </blockquote>
           </ul>
           <% if current_user %>
-          <h3><%= button_to 'Book this motorbike now!', vehicle_path(vehicle), method: "get"%></h3>
+          <h3><%= button_to 'More info about this motorbike', vehicle_path(vehicle), method: "get"%></h3>
           <%else%>
           <div class="button"><%= link_to "Please sign-up to view more details about this motorcycle!", sign_up_path %></div>
           <br>

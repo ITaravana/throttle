@@ -34,14 +34,12 @@
                     <%= link_to "My Profile", user_path(current_user.id) %>
                     <ul>
                   <li>Hey <%= current_user.email %></li>
-                  <li><a href="left-sidebar.html"> > Show my bookings</a></li>
-                  <li><a href="right-sidebar.html"> > Show my listings</a></li>
                   <li>
                     </ul>
                     <% else %>
                     <%= link_to 'Sign in', sign_in_path %>
                     <% end %>
-              </li>
+                  </li>
               <li>  <% if signed_in? %>
                     <%= link_to 'Sign out', sign_out_path, method: :delete%>
 
@@ -56,4 +54,30 @@
 <%= yield %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 </body>
+      <!-- Footer -->
+        <footer id="footer">
+          <ul class="icons">
+            <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+            <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+          </ul>
+          <ul class="copyright">
+            <li>&copy; 2016. OpenThrottle. All rights reserved.</li><li>Design & Code: <a href="http://www.benpaget.net">Ben Paget</a></li>
+          </ul>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+
+<% javascript_include_tag "jquery.min.js" %>
+<% javascript_include_tag "jquery.scrolly.min.js" %>
+<% javascript_include_tag "jquery.dropotron.min.js" %>
+<% javascript_include_tag "jquery.scrollex.min.js" %>
+<% javascript_include_tag "skel.min.js" %>
+<% javascript_include_tag "util.js" %>
+<% javascript_include_tag "main.js" %>
 </html>

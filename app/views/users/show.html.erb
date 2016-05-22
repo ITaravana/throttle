@@ -1,70 +1,88 @@
 
 <div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major">
-							<h2>Your Profile</h2>
-							<p>Hello <%= @user.first_name %>, and welcome to OpenThrottle!</p>
-						</header>
-						<div class="row 150%">
-							<div class="4u 12u$(medium)">
+	<div class="container">
+		<header class="major">
+			<h2>Your Profile</h2>
+			<p>Hello <%= @user.first_name %>, and welcome to OpenThrottle!</p>
+		</header>
+		<div class="row 150%">
+			<div class="4u 12u$(medium)">
 
-								<!-- Sidebar -->
-									<section id="sidebar">
-										<section>
-											<h3>Upload a profile picture</h3>
-											<p>Give some pep to your profile, upload a pic of you on your ride of choice</p>
-											<%= form_for @user, url: user_path(@user.id) do |x| %>
-											<footer>
-												<ul class="actions">
-													<li><%= x.file_field :pic %></li>
-												</ul>
-											</footer>
-										     
-										     <%= x.submit "Upload" %>
-										 <% end %>
-											
-										</section>
-										<hr />
-										<section>
-											<a href="#" class="image fit"><%= image_tag @user.pic.to_s %></a>
-											<h3>Amet Lorem Tempus</h3>
-											<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-											<footer>
-												<ul class="actions">
-													<li><a href="#" class="button">Learn More</a></li>
-												</ul>
-											</footer>
-										</section>
-									</section>
+				<!-- Sidebar -->
+				<section id="sidebar">
+					<section>
+						<h3>Upload a profile picture</h3>
+						<p>Give some pep to your profile, upload a pic of you on your ride of choice!</p>
+						<%= form_for @user, url: user_path(@user.id) do |x| %>
+						<footer>
+							<ul class="actions">
+								<li><%= x.file_field :pic %></li>
+							</ul>
+						</footer>
 
-							</div>
-							<div class="8u$ 12u$(medium) important(medium)">
+						<%= x.submit "Upload" %>
+						<% end %>
 
-								<!-- Content -->
-									<section id="content">
-										<a href="#" class="image fit"><%=image_tag "picsunset.jpg" %></a>
-										<h3>Your vehicles for rent</h3>
-										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
-										<ul>
-											<li>Faucibus orci lobortis ac adipiscing integer.</li>
-											<li>Col accumsan arcu mi aliquet placerat.</li>
-											<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
-											<li>Blandit massa non blandit tempor interdum.</li>
-											<li>Lacinia mattis arcu nascetur lobortis.</li>
-										</ul>
-										<p><div class="button"><%= link_to 'Create a new vehicle for rent', new_vehicle_path %></div></p>
-										<h3>Your rented vehicles</h3>
-										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
-										<ul>
-											<li>Faucibus orci lobortis ac adipiscing integer.</li>
-											<li>Col accumsan arcu mi aliquet placerat.</li>
-											<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
-											<li>Blandit massa non blandit tempor interdum.</li>
-											<li>Lacinia mattis arcu nascetur lobortis.</li>
-										</ul>
-									</section>
+					</section>
+					<hr />
+					<section>
+						<a href="#" class="image fit"><%= image_tag @user.pic.to_s %></a>
+					<hr />
+					<%= will_paginate @bookings %>
+							<h3>Your bookings</h3>
+					<div class="8u$ 12u$(medium) important(medium)">
+					<% @bookings.each do |booking| %> 
+						<section id="content">
+							<% if booking.user_id = current_user.id %>
+							<span><h6>Your booked this motorbike on: <%= booking.created_at %></h6></span>
+							<ul>
+								<li><strong>Check-in:</strong> <%= booking.check_in_date %></li>
+								<li><strong>Check-out:</strong> <%= booking.check_out_date%> </li>
+								<li><strong>Price Paid:</strong> USD <%= booking.total_price%></li>
+							</ul>
+							<%else%>
+							You have no bookings at the moment! Why don't you check out the bikes for rent?
+							<p><div class="button"><%= link_to 'See all the vehicles for rent', vehicles_path %></div></p>
+							<%break%>
+							<%end%>
+							<%end%>
+						</section>
+					</section>
+				</section>
 
-							</div>
-						</div>
+			</div>
+			<div class="8u$ 12u$(medium) important(medium)">
+
+				<!-- Content -->
+				<section id="content">
+					<a href="#" class="image fit"><%=image_tag "picsunset.jpg" %></a>
+
+					<%= will_paginate @for_rent %>
+					<h2>Your vehicles for rent</h2>
+					<% @for_rent.each do |for_rent| %> 
+						<section id="content">
+							<% if for_rent.user_id = current_user.id %>
+							<span class="image left"><%=image_tag for_rent.image.to_s %></span>
+							<ul>
+								<ul><strong>Description:</strong> <%= for_rent.description %></ul>
+								<ul><strong>Location:</strong> <%= for_rent.city%> </ul>
+								<ul><strong>Rental price per day:</strong> USD <%= for_rent.price_per_day%></ul>
+							</ul>
+							<h3><%= button_to 'See this listing now!', vehicle_path(for_rent), method: "get"%></h3>
+							<span><h6>Your created this listing on: <%= for_rent.created_at %></h6></span>
+							<br>
+							<br>
+
+							<%else%>
+							You have no vehicle for rent at the moment! Why don't you create one now?
+							<p><div class="button"><%= link_to 'Create a new vehicle for rent', new_vehicle_path %></div></p>
+							<%break%>
+							<%end%>
+							<%end%>
+							<div class="button"><%= link_to 'Have a new vehicle for rent ? Create a listing here!', new_vehicle_path %></div>
+
+							<hr />
 					</div>
 				</div>
+			</div>
+		</div>
