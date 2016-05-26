@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518035126) do
+ActiveRecord::Schema.define(version: 20160526025140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20160518035126) do
     t.string   "cc"
     t.string   "min_day_rent"
     t.string   "max_day_rent"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_foreign_key "taggings", "tags"

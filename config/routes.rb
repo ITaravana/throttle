@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   get 'transactions/new'
 
+  get "mapmyride" => "vehicles#map"
+
   root 'welcome#index'
 
   get 'users/show'

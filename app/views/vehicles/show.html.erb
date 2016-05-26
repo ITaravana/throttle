@@ -1,135 +1,166 @@
 			<%= include_gon %>
-			<!-- Main -->
-			<div id="main" class="wrapper style1">
-				<div class="container">
+			<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+
+
+			<%= javascript_tag do %>
+
+			function init_map(){
+
+			var myOptions = {
+			zoom:17,center:new google.maps.LatLng(<%= @vehicle.latitude %>,<%= @vehicle.longitude %>),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+
+					map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+					marker = new google.maps.Marker({
+					map: map,position: new google.maps.LatLng(<%= @vehicle.latitude %>,<%= @vehicle.longitude %>)
+				});
+
+				infowindow = new google.maps.InfoWindow({
+				content:'<div><%= link_to @vehicle.address, vehicle_path(@vehicle.id), {:style=>'color:#000;'} %></div>'
+
+
+
+			});
+
+			google.maps.event.addListener(marker, 'click', function(){
+			infowindow.open(map,marker);
+			});
+
+			infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+
+			<% end %>
+
+
+<!-- Main -->
+<div id="main" class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2><%=@vehicle.description %></h2>
+			<% if flash[:alert] %>
+			<div class="alert alert-danger">
+				<h3><strong>*** <%= flash[:alert] %> ***</strong></h3>
+			</div>
+			<% end %>
+			<% if flash[:notice] %>
+			<div class="alert alert-danger">
+				<h3><strong>*** <%= flash[:notice] %> ***</strong></h3>
+			</div>
+			<% end %>
+		</header>
+		<div class="row 150%">
+			<div class="8u 12u$(medium)">
+
+				<!-- Content -->
+				<section id="content">
+					<span class="image fit"><%=image_tag @vehicle.image.to_s %></span>
+
+					<h3>Motorbike's description:</h3>
+					<p><%=@vehicle.ext_desc%></p>
+
+					<section id="content">
+						<ul>
+							<blockquote>Price per day: <strong>US$ <%=@vehicle.price_per_day %></strong> </blockquote>
+						</ul>
+					</section>
+
+
+					<h4>What's in the package?</h4>
+					<ul>
+						<li><strong>Brand:</strong> <%= @vehicle.brand %></li>
+						<li><strong>Model:</strong> <%= @vehicle.model%> </li>
+						<li><strong>Model year:</strong> <%= @vehicle.model_year%> </li>
+						<li><strong>Type:</strong> <%= @vehicle.type_vehicle %></li>
+						<li><strong>CC:</strong> <%= @vehicle.cc%></li>
+						<li><strong>Accessories:</strong> <%= @vehicle.accessories%></li>
+					</ul>
+				</section>
+
+
+				<section id="content">
+					<h5>Max number of days you can rent the bike for: <strong><%=@vehicle.max_day_rent%></strong>.</h5>
+					<br>
+					<p>Tags: <%=raw tag_links_button(@vehicle.all_tags)%></p>	
+				</section>
+				<hr>
+				<section>
+
+					<% if Reservation.find_by_user_id(current_user.id).nil? || Reservation.find_by_vehicle_id_and_user_id(@vehicle.id, current_user.id) == false || Reservation.find_by_vehicle_id_and_user_id(@vehicle.id, current_user.id).nil? %>
+
 					<header class="major">
-						<h2><%=@vehicle.description %></h2>
-						<% if flash[:alert] %>
-						<div class="alert alert-danger">
-							<h3><strong>*** <%= flash[:alert] %> ***</strong></h3>
-						</div>
-						<% end %>
-						<% if flash[:notice] %>
-						<div class="alert alert-danger">
-							<h3><strong>*** <%= flash[:notice] %> ***</strong></h3>
-						</div>
-						<% end %>
+						<h2>Book this bike now!</h2>
+						<p>Go for a ride.</p>
+						<%= form_for @reservation do |t| %>
+						<%=t.hidden_field :user_id, value: current_user.id%>
+						<%=t.hidden_field :vehicle_id, value: @vehicle.id%> 
+						<%= t.label :check_in_date %> 
+						<%= t.date_field :check_in_date%>
+						<br> 
+						<br>
+						<%= t.label :check_out_date %> 
+						<%= t.date_field :check_out_date%>
+						<br>
+						<br>
+						<%=t.submit "Book now!"%>
 					</header>
-					<div class="row 150%">
-						<div class="8u 12u$(medium)">
 
-							<!-- Content -->
-							<section id="content">
-								<span class="image fit"><%=image_tag @vehicle.image.to_s %></span>
+					<%end%>
 
-								<h3>Motorbike's description:</h3>
-								<p><%=@vehicle.ext_desc%></p>
+					<% else %>
+					<div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
+						<h2 class="mbs">Book this motorbike now!</h2>
+						<%= form_tag transactions_path(vehicle_id: @vehicle.id) do%>
+						<p>Please enter your payment details below to book this motorbike through our secure Paypal gateway:</p>
+						<p> Here are the details of your booking: from <strong><%="#{@beginning}"%></strong> to <strong><%="#{@end}"%></strong>.</p>
+						<p>Your will rent this motorbike for <strong><%="#{@days}"%> days.</strong></p>
+						<div id="dropin"></div>
 
-								<section id="content">
-									<ul>
-										<blockquote>Price per day: <strong>US$ <%=@vehicle.price_per_day %></strong> </blockquote>
-									</ul>
-								</section>
-
-
-								<h4>What's in the package?</h4>
-								<ul>
-									<li><strong>Brand:</strong> <%= @vehicle.brand %></li>
-									<li><strong>Model:</strong> <%= @vehicle.model%> </li>
-									<li><strong>Model year:</strong> <%= @vehicle.model_year%> </li>
-									<li><strong>Type:</strong> <%= @vehicle.type_vehicle %></li>
-									<li><strong>CC:</strong> <%= @vehicle.cc%></li>
-									<li><strong>Accessories:</strong> <%= @vehicle.accessories%></li>
-								</ul>
-							</section>
-
-
-							<section id="content">
-								<h5>Max number of days you can rent the bike for: <strong><%=@vehicle.max_day_rent%></strong>.</h5>
-								<br>
-								<p>Tags: <%=raw tag_links_button(@vehicle.all_tags)%></p>	
-							</section>
-							<hr>
-							<section>
-
-								<% if Reservation.find_by_user_id(current_user.id).nil? || Reservation.find_by_vehicle_id_and_user_id(@vehicle.id, current_user.id) == false || Reservation.find_by_vehicle_id_and_user_id(@vehicle.id, current_user.id).nil? %>
-
-								<header class="major">
-									<h2>Book this bike now!</h2>
-									<p>Go for a ride.</p>
-									<%= form_for @reservation do |t| %>
-									<%=t.hidden_field :user_id, value: current_user.id%>
-									<%=t.hidden_field :vehicle_id, value: @vehicle.id%> 
-									<%= t.label :check_in_date %> 
-									<%= t.date_field :check_in_date%>
-									<br> 
-									<br>
-									<%= t.label :check_out_date %> 
-									<%= t.date_field :check_out_date%>
-									<br>
-									<br>
-									<%=t.submit "Book now!"%>
-								</header>
-
-								<%end%>
-
-								<% else %>
-								<div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
-									<h2 class="mbs">Book this motorbike now!</h2>
-									<%= form_tag transactions_path(vehicle_id: @vehicle.id) do%>
-									<p>Please enter your payment details below to book this motorbike through our secure Paypal gateway:</p>
-									<p> Here are the details of your booking: from <strong><%="#{@beginning}"%></strong> to <strong><%="#{@end}"%></strong>.</p>
-									<p>Your will rent this motorbike for <strong><%="#{@days}"%> days.</strong></p>
-									<div id="dropin"></div>
-
-									<%=submit_tag "Pay $#{@total_price} now", class: "button mt1" %>
-									<%end%>
-									<%= button_to 'Cancel transaction', vehicle_path, action: "delete", method: "delete" %>
-
-								</div>
-								<%end%>
-							</section>
-
-						</div>
-						<div class="4u$ 12u$(medium)">
-
-							<!-- Sidebar -->
-							<section id="sidebar">
-								<h3>Information about the owner</h3>
-								<%= image_tag(@user.pic.to_s, class: "image round")%>
-								<p><strong>Name:</strong> <%= @user.first_name %></p>
-								<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="#" class="button">See all this user's motorbikes</a></li>
-									</ul>
-								</footer>
-							</section>
-							<hr />
-							<section>
-								<h3>Where's the bike located?</h3>
-								<span class="image fit main"><%=image_tag "gmap.jpg" %></span></span>
-								<ul>
-									<li><strong>Country:</strong> <%=@vehicle.country %></li>
-									<li><strong>City:</strong> <%=@vehicle.city %></li>
-									<li><strong>Address:</strong> <%=@vehicle.address %></li>
-								</ul>
-							</section>
-							<section>
-								<h3>Other bikes nearby:</h3>
-								<span class="image fit main"><%=image_tag "gmap.jpg" %></span>
-								<ul>
-									<li><strong>Bla</strong></li>
-									<li><strong>Bla</strong></li>
-									<li><strong>Bla</strong></li>
-								</ul>
-							</section>
-
-						</section>
+						<%=submit_tag "Pay $#{@total_price} now", class: "button mt1" %>
+						<%end%>
+						<%= button_to 'Cancel transaction', vehicle_path, action: "delete", method: "delete" %>
 
 					</div>
-				</div>
+					<%end%>
+				</section>
+
 			</div>
-		</div>
+			<div class="4u$ 12u$(medium)">
+
+				<!-- Sidebar -->
+				<section id="sidebar">
+					<h3>Information about the owner</h3>
+					<%= image_tag(@user.pic.to_s, class: "image round")%>
+					<p><strong>Name:</strong> <%= @user.first_name %></p>
+					<footer>
+						<ul class="actions">
+							<li><a href="#" class="button">See all this user's motorbikes</a></li>
+						</ul>
+					</footer>
+				</section>
+				<hr />
+				<section>
+					<h3>Where's the bike located?</h3>
+					<div style='overflow:hidden;height:500px;width:100%;'>
+						<div id='gmap_canvas' style='height:500px;width:100%;'></div>
+						<style>#gmap_canvas img{
+							max-width:none!important;
+							background:none!important
+						}
+					</style>
+				</div>
+
+				<ul>
+					<li><strong>Country:</strong> <%=@vehicle.country %></li>
+					<li><strong>City:</strong> <%=@vehicle.city %></li>
+					<li><strong>Address:</strong> <%=@vehicle.address %></li>
+				</ul>
+			</section>
+		</section>
+
+	</div>
+</div>
+</div>
+</div>
 
 

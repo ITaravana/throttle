@@ -1,0 +1,60 @@
+<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+
+
+			<%= javascript_tag do %>
+
+			function init_map(){
+
+				var myOptions = {
+					zoom:12	,center:new google.maps.LatLng(3.139003,101.686855),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+
+				map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+				<% @vehicle.each do |v| %> 
+
+					marker = new google.maps.Marker({
+						map: map,position: new google.maps.LatLng(<%= v.latitude %>,<%= v.longitude %>)
+					});
+
+
+					infowindow = new google.maps.InfoWindow({
+						content:'<div class="button"><%= link_to v.description, vehicle_path(v.id), {:style=>'color:#000;'} %></div>'
+					});
+				
+
+					google.maps.event.addListener(marker, 'click', function(){
+						infowindow.open(map,marker);
+					});
+					infowindow.open(map,marker);
+				<% end %>
+			}
+
+			google.maps.event.addDomListener(window, 'load', init_map);
+
+			<% end %>
+
+
+<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Map My Ride</h2>
+							<p>See all the motorcycles for rent in your area!</p>
+							<h6>This is a <strong>beta</strong> function! Only for Kuala Lumpur area for now :)</h6>
+						</header>
+
+						<!-- Content -->
+							<section id="content">
+								<div style='overflow:hidden;height:800px;width:100%;'>
+						<div id='gmap_canvas' style='height:800px;width:100%;'></div>
+						<style>#gmap_canvas img{
+							max-width:none!important;
+							background:none!important
+						}
+					</style>
+				</div>
+							</section>
+
+					</div>
+				</div>

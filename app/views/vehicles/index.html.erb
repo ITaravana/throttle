@@ -1,4 +1,36 @@
 <!-- Main -->
+  <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+
+
+      <%= javascript_tag do %>
+
+      function init_map(){
+
+      var myOptions = {
+      zoom:17,center:new google.maps.LatLng(<%= @vmap.latitude %>,<%= @vmap.longitude %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+
+          map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+          marker = new google.maps.Marker({
+          map: map,position: new google.maps.LatLng(<%= @vmap.latitude %>,<%= @vmap.longitude %>)
+        });
+
+        infowindow = new google.maps.InfoWindow({
+        content:'<div><%= link_to @vmap.description, vehicle_path(@vmap.id), {:style=>'color:#000;'} %></div>'
+
+
+
+      });
+
+      google.maps.event.addListener(marker, 'click', function(){
+      infowindow.open(map,marker);
+      });
+
+      infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+
+      <% end %>
 
 <div id="main" class="wrapper style1">
   <div class="container">
@@ -17,12 +49,19 @@
           </section>
           <hr />
           <section>
-            <span class="image fit main"><%=image_tag "gmap.jpg" %></span>
-            <h3>See what's for rent near you!</h3>
-            <p>Imagin the treasures lying dormant in your neighborhood. From that cafe racer bikes you saw your neighbor fiddle with to that awesome Ducati you caught a glimpse of the other day. They are all on OpenThrottle.</p>
+            <h3>Latest motorbike for rent:</h3>
+            <div style='overflow:hidden;height:500px;width:100%;'>
+            <div id='gmap_canvas' style='height:500px;width:100%;'></div>
+            <style>#gmap_canvas img{
+              max-width:none!important;
+              background:none!important
+            }
+          </style>
+        </div>
             <footer>
+            <br/>
               <ul class="actions">
-                <li><a href="#" class="button">Map my ride</a></li>
+                <li><a href="mapmyride" class="button">See all bikes on a map</a></li>
               </ul>
             </footer>
           </section>

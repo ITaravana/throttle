@@ -21,10 +21,14 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def map
+    @vehicle = Vehicle.where.not(latitude: nil)
+  end
+
   
   def index
-
-    # @vehicles = Vehicle.all.paginate(page: params[:page], per_page: 5)
+      @vmapper = Vehicle.where.not(latitude: nil)
+      @vmap = @vmapper.last
 
       if params[:tag]
         @vehicles = Vehicle.tagged_with(params[:tag])
@@ -67,7 +71,7 @@ class VehiclesController < ApplicationController
 
 private 
   def vehicle_params 
-    params.require(:vehicle).permit(:user_id, :on_hire, :description, :ext_desc, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
+    params.require(:vehicle).permit(:type_vehicle, :user_id, :on_hire, :description, :ext_desc, :address, :city, :country, :min_day_rent, :max_day_rent, :price_per_day, :brand, :model, :image, :type, :model_year, :cc, :accessories, :all_tags) 
   end
 
 def generate_client_token

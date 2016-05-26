@@ -5,7 +5,15 @@ class Vehicle < ActiveRecord::Base
   has_many :reservation
   has_many :tags, through: :taggings
   mount_uploader :image, ImageUploader
-  #Getter and Setter for all_tags vertial attribute
+
+def full_address
+[address, city, country].compact.join(',')
+end
+
+  geocoded_by :full_address             # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
+  #Getter and Setter for all_tags vertial at tribute
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
     Tag.where(name: name.strip).first_or_create!

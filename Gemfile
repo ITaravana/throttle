@@ -34,6 +34,7 @@ gem "font-awesome-rails"
 gem 'braintree'
 gem 'gon'
 gem 'will_paginate', '3.0.7'
+gem 'geocoder'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
