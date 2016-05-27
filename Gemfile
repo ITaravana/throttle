@@ -35,8 +35,9 @@ gem 'braintree'
 gem 'gon'
 gem 'will_paginate', '3.0.7'
 gem 'geocoder'
+gem 'rails_12factor', group: :production
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
