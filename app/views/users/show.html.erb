@@ -27,62 +27,66 @@
 					<hr />
 					<section>
 						<a href="#" class="image fit"><%= image_tag @user.pic.to_s %></a>
-					<hr />
-					<%= will_paginate @bookings %>
-							<h3>Your bookings</h3>
-					<div class="8u$ 12u$(medium) important(medium)">
-					<% @bookings.each do |booking| %> 
-						<section id="content">
-							<% if booking.user_id = current_user.id %>
-							<span><h6>Your booked this motorbike on: <%= booking.created_at %></h6></span>
-							<ul>
-								<li><strong>Check-in:</strong> <%= booking.check_in_date %></li>
-								<li><strong>Check-out:</strong> <%= booking.check_out_date%> </li>
-								<li><strong>Price Paid:</strong> USD <%= booking.total_price%></li>
-							</ul>
-							<%else%>
-							You have no bookings at the moment! Why don't you check out the bikes for rent?
-							<p><div class="button"><%= link_to 'See all the vehicles for rent', vehicles_path %></div></p>
-							<%break%>
-							<%end%>
-							<%end%>
+						<hr />
+						<%= will_paginate @bookings %>
+						<h3>Your bookings</h3>
+						<div class="8u$ 12u$(medium) important(medium)">
+							<% @bookings.each do |booking| %> 
+							<section id="content">
+								<% if booking.user_id = current_user.id %>
+								<span><h6>Your booked this motorbike on: <%= booking.created_at %></h6></span>
+								<ul>
+									<li><strong>Check-in:</strong> <%= booking.check_in_date %></li>
+									<li><strong>Check-out:</strong> <%= booking.check_out_date%> </li>
+									<li><strong>Price Paid:</strong> USD <%= booking.total_price%></li>
+								</ul>
+								<%else%>
+								You have no bookings at the moment! Why don't you check out the bikes for rent?
+								<p><div class="button"><%= link_to 'See all the vehicles for rent', vehicles_path %></div></p>
+								<%break%>
+								<%end%>
+								<%end%>
+							</section>
 						</section>
 					</section>
-				</section>
 
-			</div>
-			<div class="8u$ 12u$(medium) important(medium)">
+				</div>
+				<div class="8u$ 12u$(medium) important(medium)">
 
-				<!-- Content -->
-				<section id="content">
-					<a href="#" class="image fit"><%=image_tag "picsunset.jpg" %></a>
+					<!-- Content -->
+					<section id="content">
+						<a href="#" class="image fit"><%=image_tag "picsunset.jpg" %></a>
 
-					<%= will_paginate @for_rent %>
-					<h2>Your vehicles for rent</h2>
-					<% @for_rent.each do |for_rent| %> 
-						<section id="content">
-							<% if for_rent.user_id = current_user.id %>
-							<span class="image left"><%=image_tag for_rent.image.to_s %></span>
-							<ul>
-								<ul><strong>Description:</strong> <%= for_rent.description %></ul>
-								<ul><strong>Location:</strong> <%= for_rent.city%> </ul>
-								<ul><strong>Rental price per day:</strong> USD <%= for_rent.price_per_day%></ul>
-							</ul>
-							<h3><%= button_to 'See this listing now!', vehicle_path(for_rent), method: "get"%></h3>
-							<span><h6>Your created this listing on: <%= for_rent.created_at %></h6></span>
-							<br>
-							<br>
+						<%= will_paginate @for_rent %>
+						<h2>Your vehicles for rent</h2>
+							<% if @for_rent.count  1 %>
+							
 
+								<% @for_rent.each do |for_rent| %> 
+
+									<section id="content">
+									
+									<span class="image left"><%=image_tag for_rent.image.to_s %></span>
+									<ul>
+										<ul><strong>Description:</strong> <%= for_rent.description %></ul>
+										<ul><strong>Location:</strong> <%= for_rent.city%> </ul>
+										<ul><strong>Rental price per day:</strong> USD <%= for_rent.price_per_day%></ul>
+									</ul>
+									<h3><%= button_to 'See this listing now!', vehicle_path(for_rent), method: "get"%></h3>
+									<span><h6>Your created this listing on: <%= for_rent.created_at %></h6></span>
+									<br>
+									<br>
+								<%end%>
+								<div class="button"><%= link_to 'Have a new vehicle for rent ? Create a listing here!', new_vehicle_path %></div>
 							<%else%>
-							You have no vehicle for rent at the moment! Why don't you create one now?
-							<p><div class="button"><%= link_to 'Create a new vehicle for rent', new_vehicle_path %></div></p>
-							<%break%>
+								You have no vehicle for rent at the moment! Why don't you create one now?
+								<p><div class="button"><%= link_to 'Create a new vehicle for rent', new_vehicle_path %></div></p>
+						
 							<%end%>
-							<%end%>
-							<div class="button"><%= link_to 'Have a new vehicle for rent ? Create a listing here!', new_vehicle_path %></div>
+							
 
 							<hr />
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>

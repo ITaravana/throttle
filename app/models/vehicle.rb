@@ -4,6 +4,7 @@ class Vehicle < ActiveRecord::Base
   has_many :taggings
   has_many :reservation
   has_many :tags, through: :taggings
+  belongs_to :user
   mount_uploader :image, ImageUploader
 
 def full_address

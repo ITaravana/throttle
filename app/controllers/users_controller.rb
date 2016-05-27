@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @bookings = Reservation.all.order('created_at DESC').paginate(page: params[:page], per_page: 2)
-    @for_rent = Vehicle.all.order('created_at DESC').paginate(page: params[:page], per_page: 2)
+    @for_rent = current_user.vehicles.order('created_at DESC').paginate(page: params[:page], per_page: 2)
+
+    # @for_rent = Vehicle.all.order('created_at DESC').paginate(page: params[:page], per_page: 2)
   end
 
   def edit
